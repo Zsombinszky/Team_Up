@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css'
 import ProfilePage from "./pages/ProfilePage.jsx";
 import {UserList} from "./pages/UserList.jsx";
+import {Home} from "./pages/Home.jsx";
 
 const App = () => {
     return (
@@ -12,7 +13,7 @@ const App = () => {
                 <Navbar/>
                 <div className="pages">
                     <Routes>
-                        <Route path="/" component={App}/>
+                        <Route path="/" element={<Home/>}/>
                         <Route path="/profile/:id" element={<ProfilePage/>}></Route>
                         <Route path="/users" element={<UserList/>}></Route>
                     </Routes>
