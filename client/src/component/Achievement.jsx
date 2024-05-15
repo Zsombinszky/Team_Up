@@ -11,7 +11,7 @@ const Achievement = () => {
 
                 <div className='flex flex-col justify-center'>
                     <h1 className='md:leading-[72px] text-3xl font-bold'>
-                        Our <span className='text-[#20B486]'>Achievement</span>
+                        Our <span className='text-[#20B486]'>Achievements</span>
                     </h1>
                     <p className='text-lg text-gray-600'>Various versions have evolved over the years, sometimes by
                         accident.</p>
@@ -22,7 +22,7 @@ const Achievement = () => {
                             </div>
                             <div className="px-3">
                                 <h1 className="text-2xl font-semibold ">300</h1>
-                                <p className="text-[#6D737A]">Instructor</p>
+                                <p className="text-[#6D737A]">Major Orders Completed</p>
                             </div>
                         </div>
                         <div className="py-6 flex">
@@ -30,8 +30,8 @@ const Achievement = () => {
                                 <FiVideo size={30} style={{color: '#FFC27A'}}/>
                             </div>
                             <div className="px-3">
-                                <h1 className="text-2xl font-semibold ">10,000+</h1>
-                                <p className="text-[#6D737A]">Video</p>
+                                <h1 className="text-2xl font-semibold ">27</h1>
+                                <p className="text-[#6D737A]">Planets Conquered</p>
                             </div>
                         </div>
                         <div className="py-6 flex">
@@ -39,8 +39,8 @@ const Achievement = () => {
                                 <SlGraduation size={30} style={{color: '#ED4459'}}/>
                             </div>
                             <div className="px-3">
-                                <h1 className="text-2xl font-semibold ">20,000+</h1>
-                                <p className="text-[#6D737A]">Student</p>
+                                <h1 className="text-2xl font-semibold ">10,000+</h1>
+                                <p className="text-[#6D737A]">New Friendships Formed</p>
                             </div>
                         </div>
                         <div className="py-6 flex">
@@ -48,8 +48,8 @@ const Achievement = () => {
                                 <SlPeople size={30} style={{color: '#0075FD'}}/>
                             </div>
                             <div className="px-3">
-                                <h1 className="text-2xl font-semibold ">1,00,000+</h1>
-                                <p className="text-[#6D737A]">User's</p>
+                                <h1 className="text-2xl font-semibold ">100,000+</h1>
+                                <p className="text-[#6D737A]">Average Monthly Users</p>
                             </div>
                         </div>
                     </div>

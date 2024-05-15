@@ -40,8 +40,8 @@ const Feedback = () => {
     return (
         <div className='w-full bg-white py-32'>
             <div className='md:max-w-[1480px] m-auto max-w-[600px]'>
-                <h1 className="text-3xl py-3 font-bold">Student's <span className="text-[#20B486]">Feedback</span></h1>
-                <p className="text-[#6D737A]">Various versions have evolved over the years, sometimes by accident.</p>
+                <h1 className="text-3xl py-3 font-bold">User <span className="text-[#20B486]">Feedback</span></h1>
+                <p className="text-[#6D737A]">All reviews are verified.</p>
                 <Slider {...settings}>
                     <FeedbackCard/>
                     <FeedbackCard/>
