@@ -39,8 +39,8 @@ const Courses = () => {
     return (
         <div className='w-full bg-[#E9F8F3B2] py-32'>
             <div className='md:max-w-[1480px] m-auto max-w-[600px]'>
-                <h1 className="text-3xl py-3 font-bold">Most Popular <span className="text-[#20B486]">Courses</span></h1>
-                <p className="text-[#6D737A]">Various versions have evolved over the years, sometimes by accident.</p>
+                <h1 className="text-3xl py-3 font-bold">Deadliest <span className="text-[#20B486]">Planets</span></h1>
+                <p className="text-[#6D737A]">For those Helldivers that love a challenge.</p>
                 <Slider {...settings}>
                     {courses.map(course => <Card course={course} key={course.id}/>)}
                 </Slider>

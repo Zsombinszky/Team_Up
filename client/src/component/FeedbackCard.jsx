@@ -9,13 +9,13 @@ const FeedbackCard = () => {
                     <img src={avatar}/>
                     <div>
                         <h1>Jenny Wilson</h1>
-                        <p>UI-UX Designer</p>
+                        <p>Level 150 Malevolon Creek Veteran</p>
                     </div>
                 </div>
                 <img className="h-8" src={quotationMark}/>
             </div>
             <div className="py-8">
-                <h3 className="text-lg">Kurvajó ez az oldal! Ez igen! xD </h3>
+                <h3 className="text-lg">I love cooperating with fellow Helldivers here! :D </h3>
             </div>
         </div>
     )
