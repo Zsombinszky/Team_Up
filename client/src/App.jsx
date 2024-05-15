@@ -1,17 +1,25 @@
 import React from 'react'
-import {Navbar, Hero, Companies, Courses, Achievement, Feedback} from "./component/index.js";
+import {Navbar} from "./component/index.js";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css'
+import ProfilePage from "./pages/ProfilePage.jsx";
+import {UserList} from "./pages/UserList.jsx";
 
 const App = () => {
     return (
-        <div>
-            <Navbar/>
-            <Hero/>
-            <Companies/>
-            <Courses/>
-            <Achievement/>
-            <Feedback/>
-        </div>
-    )
+        <BrowserRouter>
+            <div className="app">
+                <Navbar/>
+                <div className="pages">
+                    <Routes>
+                        <Route path="/" component={App}/>
+                        <Route path="/profile/:id" element={<ProfilePage/>}></Route>
+                        <Route path="/users" element={<UserList/>}></Route>
+                    </Routes>
+                </div>
+            </div>
+        </BrowserRouter>
+    );
+
 }
 export default App
