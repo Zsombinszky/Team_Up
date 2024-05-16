@@ -42,8 +42,9 @@ const RegisterPage = () => {
 
 
     return (
-        <div className="register-page">
-            <form className="register-form" onSubmit={e => handleSubmit(e)}>
+        <div className="flex flex-col p-24 justify-center items-center">
+            <h1 align="center" className="py-2 text-2xl text-[#20B486] font-medium">REGISTER</h1>
+            <form className="bg-white border max-w-[500px] p-4 input-box-shadow rounded-md justify-between" onSubmit={e => handleSubmit(e)}>
                 <div className="form-group">
                     <label htmlFor="userName" className="form-label">User name</label> <br/>
                     <input type="text" placeholder="name" value={username}
@@ -61,7 +62,7 @@ const RegisterPage = () => {
                     <input type="date" value={birthDate}
                            onChange={e => setBirthDate(e.target.value)}/>
                 </div>
-                <button type="submit" className="submit-button">Register</button>
+                <button type="submit" className="bg-[#20B486] hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Register</button>
             </form>
         </div>
     )
