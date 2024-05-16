@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const RegisterPage = () => {
 
@@ -7,6 +8,7 @@ const RegisterPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [birthDate, setBirthDate] = useState("");
+    const navigate = useNavigate();
 
 
     async function handleSubmit(e) {
@@ -29,6 +31,7 @@ const RegisterPage = () => {
             })
             if (response.ok) {
                 console.log("Registration successful")
+                navigate("/")
             } else {
                 console.error("Registration failed")
             }

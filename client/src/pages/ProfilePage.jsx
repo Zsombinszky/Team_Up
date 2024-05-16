@@ -13,8 +13,10 @@ const ProfilePage = () => {
 
     return (
         user == null ? "Loading..." :
-        <div>
-            <p>{user.username}</p>
+        <div className="flex flex-col p-24 justify-center items-center space-y-2">
+            <p className="text-2xl">{user.username}</p>
+            <p className="text-lg">{user.email}</p>
+            <p className="text-lg">{user.birthdate}</p>
         </div>
     );
 
