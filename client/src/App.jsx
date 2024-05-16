@@ -5,6 +5,7 @@ import './App.css'
 import ProfilePage from "./pages/ProfilePage.jsx";
 import {UserList} from "./pages/UserList.jsx";
 import {Home} from "./pages/Home.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                         <Route path="/" element={<Home/>}/>
                         <Route path="/profile/:id" element={<ProfilePage/>}></Route>
                         <Route path="/users" element={<UserList/>}></Route>
+                        <Route path="/register" element={<RegisterPage/>}></Route>
                     </Routes>
                 </div>
             </div>
