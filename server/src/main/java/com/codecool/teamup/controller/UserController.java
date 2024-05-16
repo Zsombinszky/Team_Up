@@ -2,11 +2,13 @@ package com.codecool.teamup.controller;
 
 import com.codecool.teamup.model.request.LoginRequest;
 import com.codecool.teamup.model.user.User;
+import com.codecool.teamup.model.user.UserDTO;
 import com.codecool.teamup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -21,8 +23,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody User user) {
-        return userService.registerUser(user);
+    public String registerUser(@RequestBody UserDTO user) {
+        User newUser = new User();
+        newUser.setUsername(user.username());
+        newUser.setPassword(user.password());
+        newUser.setEmail(user.email());
+        newUser.setBirthdate(LocalDate.parse(user.birthDate()));
+        return userService.registerUser(newUser);
     }
 
     @PostMapping("/login")
