@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from "react-router-dom";
 
 import {logo, lock, hamburgerMenu, close} from '../assets'
 
@@ -16,18 +17,20 @@ const Navbar = () => {
 
                 <div className="hidden md:flex items-center ">
                     <ul className="flex gap-4">
-                        <li>Home</li>
+                        <Link to={"/"}>Home</Link>
                         <li>About</li>
                         <li>Support</li>
                     </ul>
                 </div>
 
                 <div className="hidden md:flex">
-                    <button className="flex justify-between items-center bg-transparent px-6 gap-2">
+                    <Link to="/login" className="flex justify-between items-center bg-transparent px-6 gap-2">
                         <img src={lock} className="h-[25px]"/>
                         Login
-                    </button>
+                    </Link>
+                    <Link to="/register">
                     <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Sign Up For Free</button>
+                    </Link>
                 </div>
 
                 <div className="md:hidden" onClick={handleClick}>
