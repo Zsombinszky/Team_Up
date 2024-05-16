@@ -41,9 +41,9 @@ const LoginPage = () => {
 
 
     return (
-        <div className="login-page">
-            <h1 align="center" >Login</h1>
-            <form className="login-form" onSubmit={e => handleSubmit(e)}>
+        <div className="flex flex-col p-24 justify-center items-center">
+            <h1 align="center" className="py-2 text-2xl text-[#20B486] font-medium" >LOGIN</h1>
+            <form className="bg-white border max-w-[500px] p-4 input-box-shadow rounded-md justify-between" onSubmit={e => handleSubmit(e)}>
                 <p><label htmlFor="userName">Username</label></p>
                 <input type="text"
                        placeholder="please enter your username"
@@ -54,7 +54,7 @@ const LoginPage = () => {
                        placeholder="please enter your password"
                        value={password}
                        onChange={e=>setPassword(e.target.value)}/>
-                <p><button>Login</button></p>
+                <button className="bg-[#20B486] hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Login</button>
             </form>
         </div>
     )
