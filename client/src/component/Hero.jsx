@@ -34,7 +34,7 @@ const Hero = () => {
                     </form>
                 </div>
 
-                <img src={HD2_Banner} className="md:order-last  order-first"/>
+                <img src={HD2_Banner} className="md:order-last  order-first rounded-3xl"/>
 
 
             </div>

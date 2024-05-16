@@ -13,8 +13,10 @@ const Achievement = () => {
                     <h1 className='md:leading-[72px] text-3xl font-bold'>
                         Our <span className='text-[#20B486]'>Achievements</span>
                     </h1>
-                    <p className='text-lg text-gray-600'>Various versions have evolved over the years, sometimes by
-                        accident.</p>
+                    <p className='text-lg text-gray-600'>We are proud to showcase our achievements so far, that were
+                        only made </p>
+                    <p className='text-lg text-gray-600'>
+                        possible with the help of this wonderful community.</p>
                     <div className="grid grid-cols-2 py-16">
                         <div className="py-6 flex">
                             <div className="p-4 bg-[#E9F8F3] rounded-xl">
@@ -55,7 +57,7 @@ const Achievement = () => {
                     </div>
                 </div>
 
-                <img src={achievement} className="m-auto md:order-last  order-first"/>
+                <img src={achievement} className="m-auto md:order-last  order-first rounded-3xl"/>
 
 
             </div>
