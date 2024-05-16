@@ -11,11 +11,11 @@ export const UserList = () => {
 
     return (
         users.length === 0 ? "Loading..." :
-            <div>
+            <div className="flex flex-col p-24 justify-center items-center space-y-2">
                 {users.map((user) => (
                     <div>
                         <Link to={`/profile/${user.id}`} key={user.id}>
-                            <p>{user.username}</p>
+                            <p className="text-2xl">{user.username}</p>
                         </Link>
                     </div>
                 ))}
