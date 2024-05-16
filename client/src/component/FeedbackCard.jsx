@@ -1,15 +1,15 @@
 import React from 'react'
-import {avatar, quotationMark} from "../assets/index.js";
+import {helldiver1, quotationMark} from "../assets/index.js";
 
 const FeedbackCard = () => {
     return (
         <div className="bg-white p-8 rounded-3xl shadow-xl my-8 mx-2">
             <div className="flex justify-between">
                 <div className="flex gap-4">
-                    <img src={avatar}/>
+                    <img src={helldiver1} className="h-[50px] rounded-3xl" />
                     <div>
-                        <h1>Jenny Wilson</h1>
-                        <p>Level 150 Malevolon Creek Veteran</p>
+                        <h1>John Helldiver</h1>
+                        <p>Level 150 Malevelon Creek Veteran</p>
                     </div>
                 </div>
                 <img className="h-8" src={quotationMark}/>

@@ -1,75 +1,60 @@
 export const courses = [
-    {
-      id: 1,
-      title: 'The Complete Flutter Development Bootcamp with Dart',
-      category:'Flutter',
-      rating:5,
-      price: '$59.99',
-      linkImg:
-      'https://imgs.search.brave.com/YrWdDcc30vLk1ujOOb2T7YspGn9p6AsTC4LbTGaWiJI/rs:fit:480:270:1/g:ce/aHR0cHM6Ly93ZWVr/Y291cnNlcmV2aWV3/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAxOS8wNS9mbHV0/dGVyLWJvb3RjYW1w/LXdpdGgtZGFydC1p/bWcuanBn'
-    },
-    {
-      id: 2,
-      title: 'The Complete 2023 Web Development Bootcamp',
-      category:'Web Dev',
-      rating:4,
-      price: '$59.99',
-      linkImg:
-        'https://imgs.search.brave.com/ZkwGbElTOq8Zo7NeRU669-o016O6XSLJftZZ5I--HJg/rs:fit:750:422:1/g:ce/aHR0cHM6Ly9kaXNj/b3VudHNlcmllcy5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjAvMTEvMTAwLWRh/eXMtb2YtY29kZS10/aGUtY29tcGxldGUt/cHl0aG9uLXByby1i/b290Y2FtcC1mb3It/MjAyMi1jb3Vyc2Uu/anBn',
-    },
-    {
-      id: 3,
-      title: 'Learn Python: The Complete Python Programming CourseLearn A-Z everything about Python, from the basics, to advanced topics like Python GUI, Python Data Analysis, and more!',
-      category:'Python',
-      rating:4,
-      price: '$59.99',
-      linkImg:
-        'https://imgs.search.brave.com/Nhj_cLAZOWcUjlnR8QMX8A02rX-2RYra9w-0j-B9Rbg/rs:fit:750:422:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2IxLzJi/L2NjL2IxMmJjYzA4/YmQ4YzlhOTFjMmM5/NjY3ZTM5NzE1NzA0/LmpwZw',
-    },
-    {
-      id: 4,
-      title: 'The Complete JavaScript Course 2023: From Zero to Expert!',
-      category:'Javascript',
-      rating:4,
-      price: '$59.99',
-      linkImg:
-        'https://imgs.search.brave.com/ERyn_YUVTbB0slaulPioLMmU7Zto9A8aCA6OPptRZkI/rs:fit:768:432:1/g:ce/aHR0cHM6Ly9jb3Vy/c2Vjb3Vwb25jbHVi/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMS8wMy84NTE3/MTJfZmM2MV82LTc2/OHg0MzIuanBn',
-    },
+
     {
       id: 5,
-      title: 'Cuphead',
-      category:'Flutter',
-      rating:4,
+      title: 'Charger',
+      category:'Terminid',
+      rating:5,
       price: '$19.99',
       linkImg:
-        'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/c/cuphead-switch/hero?_a=AJADJWI0',
+        'https://cdn.gfinityesports.com/images/ncavvykf/gfinityesports/ceab0751642909e7750865daa3456fc811cfa904-1920x1080.jpg?rect=0,36,1920,1008&w=1200&h=630&auto=format',
     },
     {
       id: 6,
-      title: 'Minecraft',
-      category:'Flutter',
-      rating:4,
+      title: 'Bile Titan',
+      category:'Terminid',
+      rating:5,
       price: '$29.99',
       linkImg:
-        'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/m/minecraft-switch/hero?_a=AJADJWI0',
+        'https://cdn.mos.cms.futurecdn.net/vb6F9TNWYBKyhsfxr58HJ6-1200-80.png',
     },
     {
       id: 7,
-      title: 'Mario + Rabbids® Kingdom Battle',
-      category:'Flutter',
-      rating:4,
+      title: 'Stalker',
+      category:'Terminid',
+      rating:5,
       price: '$59.99',
       linkImg:
-        'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/u/unravel-two-switch/hero?_a=AJADJWI0',
+        'https://cdn.gfinityesports.com/images/ncavvykf/gfinityesports/8e9e8790a936530841790378f61d40066e658f91-1920x1080.jpg?rect=0,36,1920,1008&w=1200&h=630&auto=format',
     },
     {
       id: 8,
-      title: 'Unravel Two',
-      category:'Flutter',
+      title: 'Hulk',
+      category:'Automaton',
       rating:4,
       price: '$59.99',
       sale: 63,  
       linkImg:
-        'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/u/unravel-two-switch/hero?_a=AJADJWI0',
+        'https://static1.thegamerimages.com/wordpress/wp-content/uploads/2024/02/hulk-automaton-in-helldivers-2.jpg',
     },
+    {
+        id: 9,
+        title: 'Tank',
+        category:'Automaton',
+        rating:4,
+        price: '$59.99',
+        sale: 63,
+        linkImg:
+            'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/02/helldivers-2-tank.jpg',
+    },
+    {
+        id: 9,
+        title: 'Factory Strider',
+        category:'Automaton',
+        rating:5,
+        price: '$59.99',
+        sale: 63,
+        linkImg:
+            'https://fbi.cults3d.com/uploaders/23618230/illustration-file/d9e1672d-a731-4810-925d-c85dcf95f15a/1x.png',
+    }
   ];
