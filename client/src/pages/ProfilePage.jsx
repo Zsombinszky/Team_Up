@@ -24,5 +24,5 @@ const ProfilePage = () => {
 export default ProfilePage;
 
 function fetchProfile(id) {
-    return fetch(`/api/users/${id}`).then(res => res.json())
+    return fetch(`/api/user/users/${id}`).then(res => res.json())
 }

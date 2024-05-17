@@ -24,5 +24,5 @@ export const UserList = () => {
 }
 
 function fetchUsers() {
-    return fetch("/api/users").then(res => res.json())
+    return fetch("/api/user/users").then(res => res.json())
 }
