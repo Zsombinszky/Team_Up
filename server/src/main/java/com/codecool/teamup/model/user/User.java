@@ -1,8 +1,10 @@
 package com.codecool.teamup.model.user;
 
+import com.codecool.teamup.model.Weapon;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,14 +16,43 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
     private LocalDate birthdate;
+
+    private String title;
+
+    private int level;
+
+    private String image;
+
+    @ManyToMany
+    private List<Weapon> weapons;
+
+    public User(String username, String password, String email, LocalDate birthdate, String title,
+                int level, String image) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.birthdate = birthdate;
+        this.title = title;
+        this.level = level;
+        this.image = image;
+    }
+
+    public User() {
+    }
+
+    public List<Weapon> getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(List<Weapon> weapons) {
+        this.weapons = weapons;
+    }
 
     public Long getId() {
         return id;
@@ -62,6 +93,31 @@ public class User {
     public void setBirthdate(LocalDate birthDate) {
         this.birthdate = birthDate;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 
     @Override
     public String toString() {
