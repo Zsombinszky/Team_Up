@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import LoginBackground from "../assets/loginbgbig.jpg"
 
 const LoginPage = () => {
 
@@ -41,21 +42,50 @@ const LoginPage = () => {
 
 
     return (
-        <div className="flex flex-col p-24 justify-center items-center">
-            <h1 align="center" className="py-2 text-2xl text-[#20B486] font-medium" >LOGIN</h1>
-            <form className="bg-white border max-w-[500px] p-4 input-box-shadow rounded-md justify-between" onSubmit={e => handleSubmit(e)}>
-                <p><label htmlFor="userName">Username</label></p>
-                <input type="text"
-                       placeholder="please enter your username"
-                       value={username}
-                       onChange={e=>setUsername(e.target.value)}/>
-                <p><label htmlFor="password">Password</label></p>
-                    <input type="password"
-                       placeholder="please enter your password"
-                       value={password}
-                       onChange={e=>setPassword(e.target.value)}/>
-                <button className="bg-[#20B486] hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Login</button>
-            </form>
+        <div className={"w-full h-screen"}>
+            <img
+                className='hidden sm:block absolute w-full h-full object-cover'
+                src={LoginBackground}
+                alt='/'
+            />
+            <div className='fixed w-full px-4 py-24 z-50'>
+                <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-white'>
+                    <div className='max-w-[320px] mx-auto py-16'>
+                        <h1 className='text-3xl font-bold py-8'>Sign In</h1>
+                        <form onSubmit={handleSubmit} className='w-full flex flex-col'>
+                            <p><label className={"block uppercase tracking-wide text-sm font-bold mb-2"}
+                                      htmlFor="userName">Username</label></p>
+                            <input
+                                onChange={(e) => setUsername(e.target.value)}
+                                className='p-3 my-2 bg-gray-700 rounded'
+                                value={username}
+                                type='text'
+                                placeholder='username'
+                            />
+                            <p><label className={"block uppercase tracking-wide text-sm font-bold mb-2 mt-5"}
+                                      htmlFor="password">Password</label></p>
+                            <input
+                                onChange={(e) => setPassword(e.target.value)}
+                                className='p-3 my-2 bg-gray-700 rounded'
+                                type='password'
+                                value={password}
+                                placeholder='password'
+                                autoComplete='current-password'
+                            />
+                            <button
+                                className='bg-yellow-500 hover:bg-[#FFD700] py-3 my-6 rounded font-bold ease-in duration-200'>
+                                Sign In
+                            </button>
+                            <div className='flex justify-between items-center text-sm text-gray-600'>
+                                <p>
+                                    <input className='mr-2 accent-amber-400' type='checkbox'/>
+                                    Remember me
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
