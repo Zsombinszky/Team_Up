@@ -70,9 +70,8 @@ public class UserService {
         return "User not found";
     }
 
-    public User getUserById(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        return optionalUser.orElse(null);
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 
     public List<User> getAllUsers() {

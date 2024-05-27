@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {Titles} from "../data/Titles.js";
 
 const RegisterPage = () => {
 
@@ -8,6 +9,10 @@ const RegisterPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [birthDate, setBirthDate] = useState("");
+    const [title, setTitle] = useState("");
+    const [level, setLevel] = useState(0);
+    const [profilePicture, setProfilePicture] = useState("");
+
     const navigate = useNavigate();
 
 
@@ -18,6 +23,9 @@ const RegisterPage = () => {
             password: password,
             email: email,
             birthDate: birthDate,
+            title: title,
+            level: level,
+            profilePicture: profilePicture
         }
         await setUser(user);
 
@@ -39,15 +47,14 @@ const RegisterPage = () => {
         } catch (err) {
             console.error("Error during registration", err);
         }
-
-
     }
 
 
     return (
         <div className="flex flex-col p-24 justify-center items-center">
             <h1 align="center" className="py-2 text-2xl text-[#20B486] font-medium">REGISTER</h1>
-            <form className="bg-white border max-w-[500px] p-4 input-box-shadow rounded-md justify-between" onSubmit={e => handleSubmit(e)}>
+            <form className="bg-white border max-w-[500px] p-4 input-box-shadow rounded-md justify-between"
+                  onSubmit={e => handleSubmit(e)}>
                 <div className="form-group">
                     <label htmlFor="userName" className="form-label">User name</label> <br/>
                     <input type="text" placeholder="name" value={username}
@@ -64,8 +71,22 @@ const RegisterPage = () => {
                     <label htmlFor="birthdate" className="form-label">birthdate</label> <br/>
                     <input type="date" value={birthDate}
                            onChange={e => setBirthDate(e.target.value)}/>
+                    <label htmlFor="title" className="form-label">Title</label> <br/>
+                    <select onChange={e => setTitle(e.target.value)}>
+                        {Titles.map((title, index) => (
+                            <option key={index} value={title.name}>{title.name}</option>
+                        ))}
+                    </select>
+                    <label htmlFor="level" className="form-label">Level</label> <br/>
+                    <input type="number" value={level} min={1} max={150}
+                           onChange={e => setLevel(e.target.value)}/>
+                    <label htmlFor="profilePicture" className="form-label">Profile Picture</label> <br/>
+                    <input type="text" value={profilePicture}
+                           onChange={e => setProfilePicture(e.target.value)}/>
                 </div>
-                <button type="submit" className="bg-[#20B486] hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Register</button>
+                <button type="submit"
+                        className="bg-[#20B486] hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Register
+                </button>
             </form>
         </div>
     )
