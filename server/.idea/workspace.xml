@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2120cf88-6326-48b0-ac01-11288822c596" name="Changes" comment="" />
+    <list default="true" id="2120cf88-6326-48b0-ac01-11288822c596" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/NewsPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/NewsPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/ProfilePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/RegisterPage.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,6 +69,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -75,8 +80,23 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="TeamupApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="DATABASE_URL" value="jdbc:postgresql://localhost:5432/TeamUp" />
+        <env name="DATABASE_USERNAME" value="postgres" />
+        <env name="DATABASE_PASSWORD" value="Zs0mb1nszky0905+" />
+      </envs>
       <module name="teamup-test" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.codecool.teamup.TeamupApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,6 +142,9 @@
       <updated>1715669203284</updated>
       <workItem from="1715669204566" duration="10847000" />
       <workItem from="1716881744893" duration="1065000" />
+      <workItem from="1716898343514" duration="134000" />
+      <workItem from="1716898500561" duration="29000" />
+      <workItem from="1716898585027" duration="2440000" />
     </task>
     <servers />
   </component>
