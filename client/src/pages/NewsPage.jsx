@@ -20,22 +20,6 @@ const NewsPage = () => {
                 </div>
             ))}
         </div>
-
-
-        // <div className={"carousel"}>
-        //     <div className={"carousel-item"}>
-        //         <img src={"https://wallpapercave.com/wp/wp13290368.jpg"} alt={"wallpaper1"}/>
-        //     </div>
-        //     <div className={"carousel-item"}>
-        //         <img src={"https://wallpapercave.com/wp/wp13290371.png"} alt={"wallpaper2"}/>
-        //     </div>
-        //     <div className={"carousel-item"}>
-        //         <img src={"https://wallpapercave.com/wp/wp11515404.jpg"} alt={"wallpaper3"}/>
-        //     </div>
-        //     <div className={"carousel-item"}>
-        //         <img src={"https://wallpapercave.com/wp/wp13290372.png"} alt={"wallpaper4"}/>
-        //     </div>
-        // </div>
     )
 }
 export default NewsPage

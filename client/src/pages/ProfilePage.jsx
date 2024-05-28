@@ -37,7 +37,7 @@ const ProfilePage = () => {
                 </div>
                 <div>
                     <button
-                        onClick={setToggleAddWeapon(!toggleAddWeapon)}>{toggleAddWeapon ? "Close" : "Add Weapon"}</button>
+                        onClick={() =>setToggleAddWeapon(!toggleAddWeapon)}>{toggleAddWeapon ? "Close" : "Add Weapon"}</button>
                 </div>
                 {toggleAddWeapon && weapons.length > 0 ? <div>
                     <p>Add weapon to your favorites</p>
@@ -51,10 +51,8 @@ const ProfilePage = () => {
                     </select>
                 </div> : ""
                 }
-
             </div>
     );
-
 }
 export default ProfilePage;
 

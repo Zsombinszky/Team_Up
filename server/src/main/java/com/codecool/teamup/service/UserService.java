@@ -28,6 +28,9 @@ public class UserService {
         newUser.setPassword(user.password());
         newUser.setEmail(user.email());
         newUser.setBirthdate(LocalDate.parse(user.birthDate()));
+        newUser.setImage(user.image());
+        newUser.setLevel(user.level());
+        newUser.setTitle(user.title());
         userRepository.save(newUser);
         return "User registered successfully";
     }
@@ -58,6 +61,11 @@ public class UserService {
             User user = optionalUser.get();
             user.setUsername(updatedUser.getUsername());
             user.setPassword(updatedUser.getPassword());
+            user.setEmail(updatedUser.getEmail());
+            user.setBirthdate(updatedUser.getBirthdate());
+            user.setImage(updatedUser.getImage());
+            user.setLevel(updatedUser.getLevel());
+            user.setTitle(updatedUser.getTitle());
             userRepository.save(user);
             return "User updated successfully";
         }

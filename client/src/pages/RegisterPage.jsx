@@ -10,7 +10,7 @@ const RegisterPage = () => {
     const [birthDate, setBirthDate] = useState("");
     const [title, setTitle] = useState(Titles[0].name);
     const [level, setLevel] = useState(0);
-    const [profilePicture, setProfilePicture] = useState("");
+    const [image, setImage] = useState("");
     const [acceptTerms, setAcceptTerms] = useState(false);
 
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const RegisterPage = () => {
             birthDate,
             title,
             level,
-            profilePicture,
+            image,
         };
         setUser(user);
 
@@ -38,7 +38,7 @@ const RegisterPage = () => {
             });
             if (response.ok) {
                 console.log("Registration successful");
-                navigate("/");
+                 navigate("/");
             } else {
                 console.error("Registration failed");
             }
@@ -135,8 +135,8 @@ const RegisterPage = () => {
                                     <input
                                         type="text"
                                         placeholder="Profile picture URL"
-                                        value={profilePicture}
-                                        onChange={(e) => setProfilePicture(e.target.value)}
+                                        value={image}
+                                        onChange={(e) => setImage(e.target.value)}
                                         className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-200"
                                     />
                                 </div>
