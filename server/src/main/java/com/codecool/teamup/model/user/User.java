@@ -1,6 +1,6 @@
 package com.codecool.teamup.model.user;
 
-import com.codecool.teamup.model.Weapon;
+import com.codecool.teamup.model.weapon.Weapon;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -116,11 +116,5 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-
-    @Override
-    public String toString() {
-        return STR."User{id=\{id}, username='\{username}\{'\''}, password='\{password}\{'\''}\{'}'}";
     }
 }
