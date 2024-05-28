@@ -1,4 +1,4 @@
-package com.codecool.teamup.model;
+package com.codecool.teamup.model.weapon;
 
 import com.codecool.teamup.model.user.User;
 import jakarta.persistence.*;
