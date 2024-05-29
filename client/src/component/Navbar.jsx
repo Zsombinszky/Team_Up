@@ -1,76 +1,87 @@
-import React, {useState} from 'react'
-import {Link} from "react-router-dom";
-
-import {logo, lock, hamburgerMenu, close} from '../assets'
-
+import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+import { logo, lock, hamburgerMenu, close } from '../assets';
 
 const Navbar = () => {
-
     const [toggle, setToggle] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     const handleClick = () => setToggle(!toggle);
+    const token = localStorage.getItem('token');
+
+
+    useEffect(() => {
+        console.log("feri")
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, [isLoggedIn]);
 
     return (
         <div className="w-full h-[80px] bg-white border-b">
             <div className="md:max-w-[1480px] max-w-[600px] m-auto w-full h-full flex justify-between items-center">
                 <Link to="/">
-                    <img src={logo} className="h-[85px]"/>
+                    <img src={logo} className="h-[85px]" alt="logo" />
                 </Link>
 
-                <div className="hidden md:flex items-center ">
+                <div className="hidden md:flex items-center">
                     <ul className="flex gap-4">
-                        <Link to={"/"}>Home</Link>
+                        <Link to="/">Home</Link>
                         <li>About</li>
                         <li>Support</li>
-                        <Link to={"/users"}>Users</Link>
+                        <Link to="/users">Users</Link>
                     </ul>
                 </div>
 
                 <div className="hidden md:flex">
-                    <Link to="/login" className="flex justify-between items-center bg-transparent px-6 gap-2">
-                        <img src={lock} className="h-[25px]"/>
-                        Login
-                    </Link>
-                    <Link to="/register">
-                        <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Sign Up For Free
-                        </button>
-                    </Link>
+                    {isLoggedIn ? (
+                        <>
+                            <button
+                                onClick={() => {
+                                    localStorage.removeItem('token');
+                                    setIsLoggedIn(false);
+                                }}
+                                className="flex justify-between items-center bg-transparent px-6 gap-2"
+                            >
+                                <img src={lock} className="h-[25px]" alt="lock" />
+                                Logout
+                            </button>
+                            <Link to="/profile">
+                                <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Profile</button>
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login" className="flex justify-between items-center bg-transparent px-6 gap-2">
+                                <img src={lock} className="h-[25px]" alt="lock" />
+                                Login
+                            </Link>
+                            <Link to="/register">
+                                <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Sign Up For Free</button>
+                            </Link>
+                        </>
+                    )}
                 </div>
 
                 <div className="md:hidden" onClick={handleClick}>
-                    <img src={toggle ? close : hamburgerMenu}/>
+                    <img src={toggle ? close : hamburgerMenu} alt="menu" />
                 </div>
-
-
             </div>
 
             <div className={toggle ? "absolute z-10 p-4 bg-white w-full px-8 md:hidden" : "hidden"}>
                 <ul>
-                    <Link to={"/"}>
+                    <Link to="/">
                         <li className="p-4 hover:bg-grey-100">Home</li>
                     </Link>
                     <li className="p-4 hover:bg-grey-100">About</li>
                     <li className="p-4 hover:bg-grey-100">Support</li>
-                    <Link to={"/users"}>
+                    <Link to="/users">
                         <li className="p-4 hover:bg-grey-100">Users</li>
                     </Link>
-
-                    <div className="flex flex-col my-4 gap-4">
-                        <button
-                            className="border border-[#20B486] flex justify-center items-center bg-transparent px-6 gap-2 py-4">
-                            <img src={lock} className="h-[25px]"/>
-                            Login
-                        </button>
-                        <button className="px-8 py-5 rounded-md bg-[#20B486] text-white font-bold">Sign Up For Free
-                        </button>
-                    </div>
-
                 </ul>
             </div>
-
-
         </div>
+    );
+};
 
-    )
-}
-
-export default Navbar
+export default Navbar;
