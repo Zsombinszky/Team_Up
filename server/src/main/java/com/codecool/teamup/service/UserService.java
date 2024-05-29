@@ -3,10 +3,11 @@ package com.codecool.teamup.service;
 import com.codecool.teamup.model.request.LoginRequest;
 import com.codecool.teamup.model.user.User;
 import com.codecool.teamup.model.user.UserDTO;
+import com.codecool.teamup.model.weapon.Weapon;
 import com.codecool.teamup.repository.UserRepository;
+import com.codecool.teamup.repository.WeaponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,10 +17,12 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final WeaponRepository weaponRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, WeaponRepository weaponRepository) {
         this.userRepository = userRepository;
+        this.weaponRepository = weaponRepository;
     }
 
     public String registerUser(UserDTO user) {
@@ -78,5 +81,18 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public void addWeaponByName(String weaponName, long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        Optional<Weapon> optionalWeapon = weaponRepository.findByName(weaponName);
+        if (optionalUser.isPresent() && optionalWeapon.isPresent()) {
+            User user = optionalUser.get();
+            Weapon weapon = optionalWeapon.get();
+            user.getWeapons().add(weapon);
+            userRepository.save(user);
+        } else {
+            throw new RuntimeException("User or weapon not found");
+        }
     }
 }
