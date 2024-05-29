@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
-import { logo, lock, hamburgerMenu, close } from '../assets';
+import React, {useEffect, useState} from 'react';
+import {Link, useLocation} from "react-router-dom";
+import {logo, lock, hamburgerMenu, close} from '../assets';
 
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleClick = () => setToggle(!toggle);
+    const location = useLocation();
     const token = localStorage.getItem('token');
 
 
     useEffect(() => {
-        console.log("feri")
         if (token) {
             setIsLoggedIn(true);
         }
-    }, [isLoggedIn]);
+    }, [location]);
 
     return (
         <div className="w-full h-[80px] bg-white border-b">
             <div className="md:max-w-[1480px] max-w-[600px] m-auto w-full h-full flex justify-between items-center">
                 <Link to="/">
-                    <img src={logo} className="h-[85px]" alt="logo" />
+                    <img src={logo} className="h-[85px]" alt="logo"/>
                 </Link>
 
                 <div className="hidden md:flex items-center">
@@ -43,28 +43,31 @@ const Navbar = () => {
                                 }}
                                 className="flex justify-between items-center bg-transparent px-6 gap-2"
                             >
-                                <img src={lock} className="h-[25px]" alt="lock" />
+                                <img src={lock} className="h-[25px]" alt="lock"/>
                                 Logout
                             </button>
-                            <Link to="/profile">
-                                <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Profile</button>
+                            <Link to={`/profile/${token}`}>
+                                <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Profile
+                                </button>
                             </Link>
                         </>
                     ) : (
                         <>
                             <Link to="/login" className="flex justify-between items-center bg-transparent px-6 gap-2">
-                                <img src={lock} className="h-[25px]" alt="lock" />
+                                <img src={lock} className="h-[25px]" alt="lock"/>
                                 Login
                             </Link>
                             <Link to="/register">
-                                <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Sign Up For Free</button>
+                                <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">
+                                    Sign Up For Free
+                                </button>
                             </Link>
                         </>
                     )}
                 </div>
 
                 <div className="md:hidden" onClick={handleClick}>
-                    <img src={toggle ? close : hamburgerMenu} alt="menu" />
+                    <img src={toggle ? close : hamburgerMenu} alt="menu"/>
                 </div>
             </div>
 

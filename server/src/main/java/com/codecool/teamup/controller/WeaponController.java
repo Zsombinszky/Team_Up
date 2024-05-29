@@ -1,12 +1,11 @@
 package com.codecool.teamup.controller;
 
 import com.codecool.teamup.model.weapon.Weapon;
+import com.codecool.teamup.model.weapon.WeaponDTO;
 import com.codecool.teamup.service.WeaponService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,10 +14,12 @@ import java.util.List;
 public class WeaponController {
 
     private final WeaponService weaponService;
+    private final HttpServletResponse httpServletResponse;
 
     @Autowired
-    public WeaponController(WeaponService weaponService) {
+    public WeaponController(WeaponService weaponService, HttpServletResponse httpServletResponse) {
         this.weaponService = weaponService;
+        this.httpServletResponse = httpServletResponse;
     }
 
     @GetMapping()
@@ -32,5 +33,10 @@ public class WeaponController {
             return weaponService.getWeaponById(id).get();
         }
         throw new RuntimeException("Weapon not found");
+    }
+
+    @PostMapping()
+    public void addWeapon(@RequestBody WeaponDTO weapon) {
+        weaponService.addWeapon(weapon);
     }
 }
