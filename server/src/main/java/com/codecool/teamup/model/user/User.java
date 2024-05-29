@@ -2,6 +2,7 @@ package com.codecool.teamup.model.user;
 
 import com.codecool.teamup.model.guild.Guild;
 import com.codecool.teamup.model.weapon.Weapon;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class User {
     private List<Weapon> weapons;
 
     @ManyToOne
-    //@JoinColumn(name = "guild_id")
+    @JsonIgnore
     private Guild guild;
 
     public User(String username, String password, String email, LocalDate birthdate, String title,

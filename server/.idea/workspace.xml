@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2120cf88-6326-48b0-ac01-11288822c596" name="Changes" comment="" />
+    <list default="true" id="2120cf88-6326-48b0-ac01-11288822c596" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../client/src/pages/GuildDetailsPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/src/pages/GuildsPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.TeamupApplication.executor": "Run",
     "Spring Boot.TeamupTestApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "guilds",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/CODECOOL/ADVANCED_PROJECT/teamUp/client",
@@ -145,6 +149,7 @@
       <workItem from="1716914873127" duration="3713000" />
       <workItem from="1716976478060" duration="1263000" />
       <workItem from="1716984524988" duration="1230000" />
+      <workItem from="1717007205523" duration="5828000" />
     </task>
     <servers />
   </component>
