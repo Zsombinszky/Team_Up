@@ -18,7 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, WebClient webClient) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -35,15 +35,15 @@ public class UserService {
         return "User registered successfully";
     }
 
-    public String loginUser(LoginRequest loginRequest) {
+    public Long loginUser(LoginRequest loginRequest) {
         Optional<User> optionalUser = userRepository.findByUsername(loginRequest.getUsername());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (user.getPassword().equals(loginRequest.getPassword())) {
-                return "Login successful";
+                return user.getId();
             }
         }
-        return "Invalid username or password";
+        return null;
     }
 
     public String deleteUser(Long id) {

@@ -1,9 +1,11 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 import LoginBackground from "../assets/loginbgbig.jpg"
 import LoginBackground2 from "../assets/loginbg2.jpg"
 import LoginBackground3 from "../assets/loginbg3.jpg"
 import LoginBackground4 from "../assets/loginbg4.jpg"
+import LoginRegisterError from "../component/LoginRegisterError.jsx";
 
 const LoginPage = () => {
 
@@ -15,32 +17,17 @@ const LoginPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const user = {
-            username: username,
-            password: password
-        }
-
-        await setUser(user)
-
-        try {
-            const response = await fetch("/api/user/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(user)
-            })
-            if (response.ok) {
-                console.log("Login successful")
+        axios.post("/api/user/login", {
+            username,
+            password
+        }).then((response) => {
+            if (response.status === 200 && response.data !== undefined) {
+                localStorage.setItem('token', response.data);
+                console.log(response.data)
                 navigate("/")
-            } else {
-                console.error("Unsuccessful login attempt")
-
             }
-        } catch (err) {
-            console.log("Error during login: ", err)
-        }
+            return <LoginRegisterError message={"Login Failed"}/>
+        })
     }
 
     return (
@@ -65,7 +52,7 @@ const LoginPage = () => {
                 <a href="#item3" className="btn btn-sm text-yellow-300 bg-black">3</a>
                 <a href="#item4" className="btn btn-sm text-yellow-300 bg-black">4</a>
             </div>
-            <div className="fixed w-full px-4 py-24 z-50 items-center">
+            <div className="fixed w-full px-4 pt-24 z-50 items-center">
                 <div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
                     <div className="max-w-[320px] mx-auto py-16">
                         <h1 className="text-3xl font-bold pb-8">Sign In</h1>
