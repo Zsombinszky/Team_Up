@@ -1,5 +1,6 @@
 package com.codecool.teamup.model.user;
 
+import com.codecool.teamup.model.guild.Guild;
 import com.codecool.teamup.model.weapon.Weapon;
 import jakarta.persistence.*;
 
@@ -31,6 +32,10 @@ public class User {
 
     @ManyToMany
     private List<Weapon> weapons;
+
+    @ManyToOne
+    //@JoinColumn(name = "guild_id")
+    private Guild guild;
 
     public User(String username, String password, String email, LocalDate birthdate, String title,
                 int level, String image) {
@@ -116,5 +121,13 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Guild getGuild() {
+        return guild;
+    }
+
+    public void setGuild(Guild guild) {
+        this.guild = guild;
     }
 }
