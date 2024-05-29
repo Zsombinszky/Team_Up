@@ -6,13 +6,17 @@ import com.codecool.teamup.model.user.User;
 import com.codecool.teamup.repository.GuildRepository;
 import com.codecool.teamup.repository.UserRepository;
 import com.codecool.teamup.repository.WeaponRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class GuildService {
 
+    private static final Logger log = LoggerFactory.getLogger(GuildService.class);
     private final GuildRepository guildRepository;
     private final UserRepository userRepository;
     private final WeaponRepository weaponRepository;
@@ -21,6 +25,14 @@ public class GuildService {
         this.guildRepository = guildRepository;
         this.userRepository = userRepository;
         this.weaponRepository = weaponRepository;
+    }
+
+    public List<Guild> getAllGuilds() {
+        return guildRepository.findAll();
+    }
+
+    public Optional<Guild> getGuildById(Long id) {
+        return guildRepository.findById(id);
     }
 
     public String registerGuild(long userId, GuildDTO guild) {
