@@ -52,11 +52,11 @@ const ProfilePage = () => {
                     <p className="text-4xl text-yellow-300 font-bold">{user.username}</p>
                     <img className="rounded-lg w-48 h-48 border-4 mx-auto my-4 object-cover" src={user.image}
                          alt="User"/>
+                    <p>level {user.level}</p>
                     <img className="w-24 h-24" src={titleImage} alt="Title"/>
                     <p className="text-2xl mb-5">{user.title}</p>
                     <p className="text-lg">{user.email}</p>
                     <p className="text-lg">{user.birthdate}</p>
-                    <p>level {user.level}</p>
                     <Link to={`/myfeedbacks/${id}`}>My feedbacks</Link>
                 </div>
                 <div className="w-[380px] h-[600px] flex flex-col justify-center items-center border border-gray-200

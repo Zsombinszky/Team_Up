@@ -2,14 +2,11 @@ package com.codecool.teamup.controller;
 
 import com.codecool.teamup.model.feedback.Feedback;
 import com.codecool.teamup.model.feedback.FeedbackDTO;
-import com.codecool.teamup.model.guild.Guild;
-import com.codecool.teamup.model.guild.GuildDTO;
 import com.codecool.teamup.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/feedback")
@@ -37,4 +34,8 @@ public class FeedbackController {
         return feedbackService.getFeedbacksByUserId(id);
     }
 
+    @DeleteMapping("/id")
+    public void deleteFeedbackById(@RequestParam long id) {
+        feedbackService.deleteFeedback(id);
+    }
 }

@@ -2,7 +2,6 @@ package com.codecool.teamup.controller;
 
 import com.codecool.teamup.model.guild.Guild;
 import com.codecool.teamup.model.guild.GuildDTO;
-import com.codecool.teamup.model.user.User;
 import com.codecool.teamup.service.GuildService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/guild")
 public class GuildController {
-    private GuildService guildService;
+
+    private final GuildService guildService;
 
     @Autowired
     public GuildController(GuildService guildService) {
@@ -34,5 +34,10 @@ public class GuildController {
     @GetMapping("/{id}")
     public Optional<Guild> getGuildById(@PathVariable Long id) {
         return guildService.getGuildById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteGuildById(@PathVariable Long id) {
+        guildService.deleteGuildById(id);
     }
 }

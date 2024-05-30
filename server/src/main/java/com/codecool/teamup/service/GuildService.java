@@ -35,7 +35,7 @@ public class GuildService {
         return guildRepository.findById(id);
     }
 
-    public String registerGuild(long userId, GuildDTO guild) {
+    public void registerGuild(long userId, GuildDTO guild) {
         Guild newGuild = new Guild();
         newGuild.setGuildName(guild.guildName());
         newGuild.setGuildBadge(guild.guildBadge());
@@ -48,9 +48,12 @@ public class GuildService {
             newGuild.setChieftain(user);
             user.setGuild(newGuild);
             userRepository.save(user);
-            return "Guild registered successfully";
         } else {
-            return "User not found";
+            throw new RuntimeException("User not found");
         }
+    }
+
+    public void deleteGuildById(Long id) {
+        guildRepository.deleteById(id);
     }
 }
