@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import NewsPage from "./pages/NewsPage.jsx";
 import GuildsPage from "./pages/GuildsPage.jsx";
 import GuildDetailsPage from "./pages/GuildDetailsPage.jsx";
+import MyFeedbacks from "./pages/MyFeedbacks.jsx";
 
 const App = () => {
     return (
@@ -25,6 +26,7 @@ const App = () => {
                         <Route path="/news" element={<NewsPage/>}></Route>
                         <Route path="/guilds" element={<GuildsPage/>}></Route>
                         <Route path="/guilds/:id" element={<GuildDetailsPage/>}></Route>
+                        <Route path="/myfeedbacks/:id" element={<MyFeedbacks/>}></Route>
                     </Routes>
                 </div>
             </div>

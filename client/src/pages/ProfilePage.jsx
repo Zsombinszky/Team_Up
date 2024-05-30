@@ -1,5 +1,5 @@
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {Link, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import {Titles} from "../data/Titles.js";
 
 const ProfilePage = () => {
@@ -42,6 +42,7 @@ const ProfilePage = () => {
                     <p className="text-lg">{user.email}</p>
                     <p className="text-lg">{user.birthdate}</p>
                     <p>level {user.level}</p>
+                    <Link to={`/myfeedbacks/${id}`}>My feedbacks</Link>
                 </div>
                 <div className="w-[380px] h-[600px] flex flex-col justify-center items-center border border-gray-200
                                 py-12 rounded-lg bg-[#4a4e69]">
