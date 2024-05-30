@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/weapons")
@@ -38,5 +39,14 @@ public class WeaponController {
     @PostMapping()
     public void addWeapon(@RequestBody WeaponDTO weapon) {
         weaponService.addWeapon(weapon);
+    }
+
+    @GetMapping("/name/{name}")
+    public Weapon getWeaponByName(@PathVariable String name) {
+        Optional<Weapon> optionalWeapon = weaponService.getWeaponByName(name);
+        if (optionalWeapon.isPresent()) {
+            return optionalWeapon.get();
+        }
+        throw new RuntimeException("Weapon with name " + name + " not found");
     }
 }

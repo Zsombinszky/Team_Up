@@ -1,18 +1,26 @@
 import {Link, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {Titles} from "../data/Titles.js";
+import axios from "axios";
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
     const [toggleAddWeapon, setToggleAddWeapon] = useState(false);
     const [weapons, setWeapons] = useState([]);
     const [titleImage, setTitleImage] = useState("");
+    const [weaponName, setWeaponName] = useState("");
+    const [weaponAmount, setWeaponAmount] = useState(null);
+
+    const maxWeaponNumber = 3;
 
     const {id} = useParams();
 
     useEffect(() => {
         fetchProfile(id).then((u) => setUser(u));
-    }, [id]);
+
+        console.log(weapons.length)
+
+    }, [id, weaponAmount]);
 
     useEffect(() => {
         if (user) {
@@ -26,6 +34,13 @@ const ProfilePage = () => {
             fetchWeapons().then((response) => setWeapons(response));
         }
     }, [toggleAddWeapon]);
+
+    const addWeapon = async () => {
+        await axios.patch(`/api/user/add-weapon?weaponName=${weaponName}&userId=${user.id}`).catch((error) => {
+            console.log(error);
+        })
+        setWeaponAmount(weaponAmount + 1);
+    }
 
     return user === null ? (
         "Loading..."
@@ -69,17 +84,24 @@ const ProfilePage = () => {
                     {toggleAddWeapon && weapons.length > 0 ? (
                         <div className="flex flex-col justify-center items-center mt-4">
                             <p>Add weapon to your favorites</p>
-                            <select className="justify-center items-center">
+                            <select onChange={e => setWeaponName(e.target.value)}
+                                    className="justify-center items-center">
                                 {weapons.map((weapon) => (
                                     <option key={weapon.id}>{weapon.name}</option>
                                 ))}
                             </select>
+                            <button
+                                className={"bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"}
+                                onClick={() => addWeapon(weaponName)}>
+                                Add
+                            </button>
                         </div>
                     ) : null}
                 </div>
             </div>
         </div>
     );
+
 };
 
 export default ProfilePage;
@@ -96,3 +118,4 @@ const findTitleImageByName = (titles, userTitle) => {
     const filteredTitle = titles.filter((title) => userTitle === title.name);
     return filteredTitle.length > 0 ? filteredTitle[0].image : "";
 };
+
