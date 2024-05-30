@@ -49,4 +49,9 @@ public class WeaponController {
         }
         throw new RuntimeException("Weapon with name " + name + " not found");
     }
+
+    @DeleteMapping
+    public void deleteWeaponById(@RequestParam long id) {
+        weaponService.deleteWeaponById(id);
+    }
 }

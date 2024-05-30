@@ -3,9 +3,7 @@ package com.codecool.teamup.controller;
 import com.codecool.teamup.model.request.LoginRequest;
 import com.codecool.teamup.model.user.User;
 import com.codecool.teamup.model.user.UserDTO;
-import com.codecool.teamup.model.weapon.Weapon;
 import com.codecool.teamup.service.UserService;
-import org.aspectj.weaver.IWeaveRequestor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,7 +52,8 @@ public class UserController {
     }
 
     @PatchMapping("/add-weapon")
-    public void addWeaponByName(@RequestParam String weaponName, @RequestParam long userId){
+    public void addWeaponByName(@RequestParam String weaponName, @RequestParam long userId) {
         userService.addWeaponByName(weaponName, userId);
     }
+
 }

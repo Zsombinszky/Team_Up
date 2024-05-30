@@ -36,4 +36,8 @@ public class WeaponService {
     public Optional<Weapon> getWeaponByName(String name) {
         return weaponRepository.findByName(name);
     }
+
+    public void deleteWeaponById(long id) {
+        weaponRepository.deleteById(id);
+    }
 }
