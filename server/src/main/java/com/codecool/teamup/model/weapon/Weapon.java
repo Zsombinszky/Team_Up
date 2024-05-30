@@ -1,6 +1,7 @@
 package com.codecool.teamup.model.weapon;
 
 import com.codecool.teamup.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

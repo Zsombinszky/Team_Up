@@ -32,4 +32,8 @@ public class WeaponService {
         System.out.println(newWeapon);
         weaponRepository.save(newWeapon);
     }
+
+    public Optional<Weapon> getWeaponByName(String name) {
+        return weaponRepository.findByName(name);
+    }
 }

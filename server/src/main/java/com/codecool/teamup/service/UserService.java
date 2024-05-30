@@ -89,6 +89,11 @@ public class UserService {
         if (optionalUser.isPresent() && optionalWeapon.isPresent()) {
             User user = optionalUser.get();
             Weapon weapon = optionalWeapon.get();
+            if (user.getWeapons().contains(weapon)) {
+                throw new IllegalArgumentException("This weapon is already in user favorites");
+            } else if (user.getWeapons().size() >= 3) {
+                throw new RuntimeException("User can only have 3 weapons");
+            }
             user.getWeapons().add(weapon);
             userRepository.save(user);
         } else {
