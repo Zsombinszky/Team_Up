@@ -1,10 +1,24 @@
-import React from 'react'
-import Card from "./Card.jsx";
+import React, {useEffect, useState} from 'react'
 import Slider from "react-slick";
-import {courses} from "../data/Courses.js";
 import FeedbackCard from "./FeedbackCard.jsx";
+import axios from "axios";
 
 const Feedback = () => {
+    const [feedbacks, setFeedbacks] = useState([]);
+
+    async function fetchFeedbacks() {
+        try {
+            const response = await axios.get("/api/feedback/all", {responseType: "json"})
+            return response.data;
+        } catch (error) {
+            console.error("Error reading data:", error)
+        }
+    }
+
+    useEffect(() => {
+        fetchFeedbacks().then(feedbacks => setFeedbacks(feedbacks))
+    }, []);
+
     var settings = {
         dots: true,
         infinite: false,
@@ -44,9 +58,9 @@ const Feedback = () => {
                 <p className="text-[#6D737A]">All reviews are verified. Undemocratic reviews will be removed, and the
                     users responsible will be prosecuted.</p>
                 <Slider {...settings}>
-                    <FeedbackCard/>
-                    <FeedbackCard/>
-                    <FeedbackCard/>
+                    {feedbacks.map((feedback) => (
+                        <FeedbackCard feedback={feedback}/>
+                    ))}
                 </Slider>
             </div>
 
