@@ -41,4 +41,8 @@ public class FeedbackService {
     public List<Feedback> getAllFeedbacks() {
         return feedbackRepository.findAll();
     }
+
+    public List<Feedback> getFeedbacksByUserId(Long id) {
+        return feedbackRepository.findAllByUserId(id);
+    }
 }

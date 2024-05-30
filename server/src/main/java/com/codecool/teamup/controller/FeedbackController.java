@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/feedback")
@@ -30,4 +31,10 @@ public class FeedbackController {
     public List<Feedback> getAllFeedbacks() {
         return feedbackService.getAllFeedbacks();
     }
+
+    @GetMapping("/user/{id}")
+    public List<Feedback> getFeedbacksById(@PathVariable Long id) {
+        return feedbackService.getFeedbacksByUserId(id);
+    }
+
 }

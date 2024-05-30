@@ -5,7 +5,7 @@ import LoginBackground from "../assets/loginbgbig.jpg"
 import LoginBackground2 from "../assets/loginbg2.jpg"
 import LoginBackground3 from "../assets/loginbg3.jpg"
 import LoginBackground4 from "../assets/loginbg4.jpg"
-import LoginRegisterError from "../component/LoginRegisterError.jsx";
+import ErrorComponent from "../component/ErrorComponent.jsx";
 
 const LoginPage = () => {
 
@@ -26,7 +26,7 @@ const LoginPage = () => {
                 console.log(response.data)
                 navigate("/")
             }
-            return <LoginRegisterError message={"Login Failed"}/>
+            return <ErrorComponent message={"Login Failed"}/>
         })
     }
 

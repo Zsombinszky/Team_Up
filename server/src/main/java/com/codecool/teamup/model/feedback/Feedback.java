@@ -1,6 +1,7 @@
 package com.codecool.teamup.model.feedback;
 
 import com.codecool.teamup.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,7 @@ public class Feedback {
     private long id;
 
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     private String userName;
