@@ -6,6 +6,7 @@ import com.codecool.teamup.model.user.UserDTO;
 import com.codecool.teamup.model.weapon.Weapon;
 import com.codecool.teamup.repository.UserRepository;
 import com.codecool.teamup.repository.WeaponRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,7 @@ public class UserService {
         return null;
     }
 
+    @Transactional
     public String deleteUser(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
@@ -58,6 +60,7 @@ public class UserService {
         return "User not found";
     }
 
+    @Transactional
     public String updateUser(Long id, User updatedUser) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
@@ -83,6 +86,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Transactional
     public void addWeaponByName(String weaponName, long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         Optional<Weapon> optionalWeapon = weaponRepository.findByName(weaponName);

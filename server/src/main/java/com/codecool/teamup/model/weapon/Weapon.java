@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "weapon")
 public class Weapon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +17,7 @@ public class Weapon {
 
     private String image;
 
+//  mappedBy attribute indicates the field in the User Entity, that owns the relationship
     @ManyToMany(mappedBy = "weapons")
     private List<User> users = new ArrayList<>();
 
