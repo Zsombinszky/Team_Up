@@ -1,7 +1,6 @@
 package com.codecool.teamup.model.weapon;
 
-import com.codecool.teamup.model.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.codecool.teamup.model.user.UserEntity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class Weapon {
 
 //  mappedBy attribute indicates the field in the User Entity, that owns the relationship
     @ManyToMany(mappedBy = "weapons")
-    private List<User> users = new ArrayList<>();
+    private List<UserEntity> users = new ArrayList<>();
 
     public Weapon() {
     }

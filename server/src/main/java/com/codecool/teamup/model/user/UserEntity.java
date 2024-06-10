@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,12 +35,14 @@ public class User {
     @ManyToMany
     private List<Weapon> weapons;
 
+    private String role;
+
     @ManyToOne
     @JsonIgnore
     private Guild guild;
 
-    public User(String username, String password, String email, LocalDate birthdate, String title,
-                int level, String image) {
+    public UserEntity(String username, String password, String email, LocalDate birthdate, String title,
+                      int level, String image, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -48,9 +50,10 @@ public class User {
         this.title = title;
         this.level = level;
         this.image = image;
+        this.role = role;
     }
 
-    public User() {
+    public UserEntity() {
     }
 
     public List<Weapon> getWeapons() {
@@ -131,5 +134,13 @@ public class User {
 
     public void setGuild(Guild guild) {
         this.guild = guild;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

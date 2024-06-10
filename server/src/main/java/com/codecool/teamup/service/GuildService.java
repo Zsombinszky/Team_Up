@@ -2,7 +2,7 @@ package com.codecool.teamup.service;
 
 import com.codecool.teamup.model.guild.Guild;
 import com.codecool.teamup.model.guild.GuildDTO;
-import com.codecool.teamup.model.user.User;
+import com.codecool.teamup.model.user.UserEntity;
 import com.codecool.teamup.repository.GuildRepository;
 import com.codecool.teamup.repository.UserRepository;
 import com.codecool.teamup.repository.WeaponRepository;
@@ -41,9 +41,9 @@ public class GuildService {
         newGuild.setGuildBadge(guild.guildBadge());
         newGuild.setMissionStatement(guild.missionStatement());
 
-        Optional<User> optionalUser = userRepository.findById(userId);
+        Optional<UserEntity> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
+            UserEntity user = optionalUser.get();
             guildRepository.save(newGuild);
             newGuild.setChieftain(user);
             user.setGuild(newGuild);

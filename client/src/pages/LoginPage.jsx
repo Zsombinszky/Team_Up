@@ -22,7 +22,7 @@ const LoginPage = () => {
             password
         }).then((response) => {
             if (response.status === 200 && response.data !== undefined) {
-                localStorage.setItem('token', response.data);
+                localStorage.setItem('token', response.data.jwt);
                 console.log(response.data)
                 navigate("/")
             }
