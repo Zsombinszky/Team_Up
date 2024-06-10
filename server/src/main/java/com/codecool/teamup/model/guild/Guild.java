@@ -1,6 +1,6 @@
 package com.codecool.teamup.model.guild;
 
-import com.codecool.teamup.model.user.User;
+import com.codecool.teamup.model.user.UserEntity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -20,17 +20,17 @@ public class Guild {
     private String guildBadge;
 
     @OneToOne
-    private User chieftain;
+    private UserEntity chieftain;
 
     @OneToMany(mappedBy = "guild", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<User> members;
+    private List<UserEntity> members;
 
     private String missionStatement;
 
     public Guild() {
     }
 
-    public Guild(String guildName, String guildBadge, User chieftain, String missionStatement) {
+    public Guild(String guildName, String guildBadge, UserEntity chieftain, String missionStatement) {
         this.guildName = guildName;
         this.guildBadge = guildBadge;
         this.chieftain = chieftain;
@@ -62,23 +62,23 @@ public class Guild {
         this.guildBadge = guildBadge;
     }
 
-    public User getChieftain() {
+    public UserEntity getChieftain() {
         return chieftain;
     }
 
-    public void setChieftain(User chieftain) {
+    public void setChieftain(UserEntity chieftain) {
         this.chieftain = chieftain;
     }
 
-    public List<User> getMembers() {
+    public List<UserEntity> getMembers() {
         return members;
     }
 
-    public void setMembers(List<User> members) {
+    public void setMembers(List<UserEntity> members) {
         this.members = members;
     }
 
-    public void addMember(User user) {
+    public void addMember(UserEntity user) {
         members.add(user);
     }
 

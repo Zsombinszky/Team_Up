@@ -1,6 +1,6 @@
 package com.codecool.teamup.model.feedback;
 
-import com.codecool.teamup.model.user.User;
+import com.codecool.teamup.model.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -14,7 +14,7 @@ public class Feedback {
 
     @ManyToOne
     @JsonIgnore
-    private User user;
+    private UserEntity user;
 
     private String userName;
 
@@ -27,7 +27,7 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Feedback(User user, String userName, int userLevel, String userImage, String feedbackText) {
+    public Feedback(UserEntity user, String userName, int userLevel, String userImage, String feedbackText) {
         this.user = user;
         this.userName = userName;
         this.userLevel = userLevel;
@@ -43,11 +43,11 @@ public class Feedback {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 

@@ -1,14 +1,29 @@
 package com.codecool.teamup.service;
 
+import com.codecool.teamup.model.JwtResponse;
+import com.codecool.teamup.model.entity.Role;
 import com.codecool.teamup.model.request.LoginRequest;
-import com.codecool.teamup.model.user.User;
+import com.codecool.teamup.model.user.NewUserDTO;
 import com.codecool.teamup.model.user.UserDTO;
+import com.codecool.teamup.model.user.UserEntity;
 import com.codecool.teamup.model.weapon.Weapon;
 import com.codecool.teamup.repository.UserRepository;
 import com.codecool.teamup.repository.WeaponRepository;
+import com.codecool.teamup.security.jwt.JwtUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,52 +34,71 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final WeaponRepository weaponRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
 
     @Autowired
-    public UserService(UserRepository userRepository, WeaponRepository weaponRepository) {
+    public UserService(UserRepository userRepository, WeaponRepository weaponRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
         this.userRepository = userRepository;
         this.weaponRepository = weaponRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.jwtUtils = jwtUtils;
     }
 
-    public String registerUser(UserDTO user) {
-        User newUser = new User();
+    public String registerUser(NewUserDTO user) {
+        UserEntity newUser = new UserEntity();
         newUser.setUsername(user.username());
-        newUser.setPassword(user.password());
+        newUser.setPassword(passwordEncoder.encode(user.password()));
         newUser.setEmail(user.email());
         newUser.setBirthdate(LocalDate.parse(user.birthDate()));
         newUser.setImage(user.image());
         newUser.setLevel(user.level());
         newUser.setTitle(user.title());
+        newUser.setRole(String.valueOf(Role.ROLE_USER));
         userRepository.save(newUser);
         return "User registered successfully";
     }
 
-    public Long loginUser(LoginRequest loginRequest) {
-        Optional<User> optionalUser = userRepository.findByUsername(loginRequest.getUsername());
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            if (user.getPassword().equals(loginRequest.getPassword())) {
-                return user.getId();
-            }
-        }
-        return null;
+    public JwtResponse loginUser(LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
+        );
+
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        User user = (User) authentication.getPrincipal();
+        List<String> roles = user.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+
+        return new JwtResponse(jwt, user.getUsername(), roles);
     }
 
     @Transactional
     public String deleteUser(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = ((UserDetails) authentication.getPrincipal()).getUsername();
+        Optional<UserEntity> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
-            userRepository.delete(optionalUser.get());
-            return "User deleted successfully";
+            if (optionalUser.get().getUsername().equals(currentUsername) ||
+                    authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+                userRepository.delete(optionalUser.get());
+                return "User deleted successfully";
+            } else {
+                return "Unauthorized delete request";
+            }
         }
         return "User not found";
     }
 
     @Transactional
-    public String updateUser(Long id, User updatedUser) {
-        Optional<User> optionalUser = userRepository.findById(id);
+    public String updateUser(Long id, UserEntity updatedUser) {
+        Optional<UserEntity> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
+            UserEntity user = optionalUser.get();
             user.setUsername(updatedUser.getUsername());
             user.setPassword(updatedUser.getPassword());
             user.setEmail(updatedUser.getEmail());
@@ -78,20 +112,26 @@ public class UserService {
         return "User not found";
     }
 
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public UserDTO getUserById(Long id) {
+        Optional<UserEntity> userEntity = userRepository.findById(id);
+        if (userEntity.isPresent()) {
+            UserEntity user = userEntity.get();
+            return new UserDTO(user.getId(), user.getUsername(), user.getEmail(), user.getBirthdate(), user.getLevel(),
+                    user.getTitle(), user.getImage());
+        }
+        throw new RuntimeException("User not found");
     }
 
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Transactional
     public void addWeaponByName(String weaponName, long userId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
+        Optional<UserEntity> optionalUser = userRepository.findById(userId);
         Optional<Weapon> optionalWeapon = weaponRepository.findByName(weaponName);
         if (optionalUser.isPresent() && optionalWeapon.isPresent()) {
-            User user = optionalUser.get();
+            UserEntity user = optionalUser.get();
             Weapon weapon = optionalWeapon.get();
             if (user.getWeapons().contains(weapon)) {
                 throw new IllegalArgumentException("This weapon is already in user favorites");

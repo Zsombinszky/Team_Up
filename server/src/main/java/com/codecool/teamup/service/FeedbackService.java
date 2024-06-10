@@ -2,7 +2,7 @@ package com.codecool.teamup.service;
 
 import com.codecool.teamup.model.feedback.Feedback;
 import com.codecool.teamup.model.feedback.FeedbackDTO;
-import com.codecool.teamup.model.user.User;
+import com.codecool.teamup.model.user.UserEntity;
 import com.codecool.teamup.repository.FeedbackRepository;
 import com.codecool.teamup.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -25,9 +25,9 @@ public class FeedbackService {
         Feedback feedback = new Feedback();
         feedback.setFeedbackText(feedbackDTO.feedbackText());
 
-        Optional<User> optionalUser = userRepository.findById(userId);
+        Optional<UserEntity> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
+            UserEntity user = optionalUser.get();
             feedback.setUser(user);
             feedback.setUserName(user.getUsername());
             feedback.setUserImage(user.getImage());

@@ -34,8 +34,8 @@ public class FeedbackController {
         return feedbackService.getFeedbacksByUserId(id);
     }
 
-    @DeleteMapping("/id")
-    public void deleteFeedbackById(@RequestParam long id) {
+    @DeleteMapping("/delete/{id}")
+    public void deleteFeedbackById(@PathVariable long id) {
         feedbackService.deleteFeedback(id);
     }
 }
