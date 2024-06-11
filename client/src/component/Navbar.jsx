@@ -5,6 +5,8 @@ import {logo, lock, hamburgerMenu, close} from '../assets';
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+
 
     const handleClick = () => setToggle(!toggle);
     const location = useLocation();
@@ -14,6 +16,9 @@ const Navbar = () => {
     useEffect(() => {
         if (token) {
             setIsLoggedIn(true);
+        }
+        if (localStorage.getItem("isAdmin")) {
+            setIsAdmin(true);
         }
     }, [location]);
 
@@ -32,13 +37,20 @@ const Navbar = () => {
                         <Link to="/users">Users</Link>
                     </ul>
                 </div>
-
                 <div className="hidden md:flex">
+                    {isAdmin && (
+                        <Link to={"/admin"}>
+                            <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">
+                                ADMIN TOOLS
+                            </button>
+                        </Link>
+                    )}
                     {isLoggedIn ? (
                         <>
                             <button
                                 onClick={() => {
                                     localStorage.removeItem('token');
+                                    localStorage.removeItem('isAdmin');
                                     setIsLoggedIn(false);
                                 }}
                                 className="flex justify-between items-center bg-transparent px-6 gap-2"
@@ -70,7 +82,6 @@ const Navbar = () => {
                     <img src={toggle ? close : hamburgerMenu} alt="menu"/>
                 </div>
             </div>
-
             <div className={toggle ? "absolute z-10 p-4 bg-white w-full px-8 md:hidden" : "hidden"}>
                 <ul>
                     <Link to="/">
@@ -82,10 +93,6 @@ const Navbar = () => {
                         <li className="p-4 hover:bg-grey-100">Users</li>
                     </Link>
                 </ul>
-            </div>
-
-            <div>
-                adminbutton
             </div>
         </div>
     );

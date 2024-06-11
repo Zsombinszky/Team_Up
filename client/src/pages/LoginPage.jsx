@@ -23,6 +23,7 @@ const LoginPage = () => {
         }).then((response) => {
             if (response.status === 200 && response.data !== undefined) {
                 localStorage.setItem('token', response.data.jwt);
+                localStorage.setItem('isAdmin', !!response.data.roles.includes("ROLE_ADMIN"));
                 console.log(response.data)
                 navigate("/")
             }
