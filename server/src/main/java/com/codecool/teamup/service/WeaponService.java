@@ -1,9 +1,13 @@
 package com.codecool.teamup.service;
 
+import com.codecool.teamup.model.user.MyUser;
 import com.codecool.teamup.model.weapon.Weapon;
 import com.codecool.teamup.model.weapon.WeaponDTO;
 import com.codecool.teamup.repository.WeaponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

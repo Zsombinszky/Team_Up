@@ -44,6 +44,8 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/api/user/register", "/api/user/login",
                             "/api/feedback/all", "/api/dispatches").permitAll();
+                    registry.requestMatchers("/api/weapons/add", "/api/weapons/delete").hasRole("ADMIN");
+                    registry.requestMatchers("/api/guild/delete/{id}").hasRole("GUILD_MASTER");
                     registry.anyRequest().authenticated();
                 });
         httpSecurity.authenticationProvider(authenticationProvider());

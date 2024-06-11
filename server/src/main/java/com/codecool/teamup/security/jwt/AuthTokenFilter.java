@@ -1,5 +1,6 @@
 package com.codecool.teamup.security.jwt;
 
+import com.codecool.teamup.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

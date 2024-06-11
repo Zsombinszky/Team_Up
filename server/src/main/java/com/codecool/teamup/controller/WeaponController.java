@@ -36,7 +36,7 @@ public class WeaponController {
         throw new RuntimeException("Weapon not found");
     }
 
-    @PostMapping()
+    @PostMapping("/add")
     public void addWeapon(@RequestBody WeaponDTO weapon) {
         weaponService.addWeapon(weapon);
     }
@@ -50,7 +50,7 @@ public class WeaponController {
         throw new RuntimeException("Weapon with name " + name + " not found");
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public void deleteWeaponById(@RequestParam long id) {
         weaponService.deleteWeaponById(id);
     }

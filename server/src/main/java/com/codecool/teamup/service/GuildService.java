@@ -1,13 +1,19 @@
 package com.codecool.teamup.service;
 
+import com.codecool.teamup.model.entity.Role;
 import com.codecool.teamup.model.guild.Guild;
 import com.codecool.teamup.model.guild.GuildDTO;
+import com.codecool.teamup.model.user.MyUser;
 import com.codecool.teamup.model.user.UserEntity;
 import com.codecool.teamup.repository.GuildRepository;
 import com.codecool.teamup.repository.UserRepository;
 import com.codecool.teamup.repository.WeaponRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +60,17 @@ public class GuildService {
     }
 
     public void deleteGuildById(Long id) {
-        guildRepository.deleteById(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        long userId = ((MyUser) authentication.getPrincipal()).getId();
+        Optional<Guild> optionalGuild = guildRepository.findById(id);
+        if (optionalGuild.isPresent()) {
+            if (optionalGuild.get().getChieftain().getId().equals(userId) || authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+                guildRepository.deleteById(id);
+            } else {
+                throw new IllegalArgumentException("Unauthorized delete request");
+            }
+        } else {
+            throw new IllegalArgumentException("Guild not found");
+        }
     }
 }
