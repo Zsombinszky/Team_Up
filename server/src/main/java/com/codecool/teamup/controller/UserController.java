@@ -54,8 +54,8 @@ public class UserController {
     }
 
     @PatchMapping("/add-weapon")
-    public void addWeaponByName(@RequestParam String weaponName, @RequestParam long userId) {
-        userService.addWeaponByName(weaponName, userId);
+    public void addWeaponByName(@RequestParam String weaponName) {
+        userService.addWeaponByName(weaponName);
     }
 
 }

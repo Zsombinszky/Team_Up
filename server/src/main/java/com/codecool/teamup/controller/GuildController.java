@@ -38,6 +38,7 @@ public class GuildController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteGuildById(@PathVariable Long id) {
+
         guildService.deleteGuildById(id);
     }
 }

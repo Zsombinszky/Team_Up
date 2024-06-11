@@ -1,6 +1,7 @@
 package com.codecool.teamup.service;
 
 import com.codecool.teamup.model.entity.Role;
+import com.codecool.teamup.model.user.MyUser;
 import com.codecool.teamup.model.user.UserEntity;
 import com.codecool.teamup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             for (Role role : getRoles(userEntityDetails)) {
                 grantedAuthorities.add(new SimpleGrantedAuthority(role.name()));
             }
-            return new User(userEntityDetails.getUsername(), userEntityDetails.getPassword(), grantedAuthorities);
+            return new MyUser(userEntityDetails.getId(), userEntityDetails.getUsername(), userEntityDetails.getPassword(), grantedAuthorities);
         } else {
             throw new UsernameNotFoundException(username);
         }
