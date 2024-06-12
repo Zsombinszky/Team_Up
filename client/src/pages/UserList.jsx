@@ -24,5 +24,7 @@ export const UserList = () => {
 }
 
 function fetchUsers() {
-    return fetch("/api/user/users").then(res => res.json())
+    return fetch("/api/user/users", {
+        headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
+    }).then(res => res.json())
 }
