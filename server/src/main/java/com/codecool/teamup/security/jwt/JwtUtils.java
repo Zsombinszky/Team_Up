@@ -6,6 +6,8 @@ import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 
+
 @Component
+@ComponentScan
 public class JwtUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtils.class);
@@ -40,6 +44,7 @@ public class JwtUtils {
     public String getUsernameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(key()).build().parseClaimsJws(token).getBody().getSubject();
     }
+    
 
     public boolean validateJwtToken(String authToken) {
         try {

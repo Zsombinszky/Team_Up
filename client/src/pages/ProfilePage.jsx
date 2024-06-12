@@ -14,6 +14,8 @@ const ProfilePage = () => {
     const maxWeaponNumber = 3;
 
     const {id} = useParams();
+    console.log(id);
+
 
     useEffect(() => {
         fetchProfile(id).then((u) => setUser(u));
@@ -36,10 +38,16 @@ const ProfilePage = () => {
     }, [toggleAddWeapon]);
 
     const addWeapon = async () => {
-        await axios.patch(`/api/user/add-weapon?weaponName=${weaponName}&userId=${user.id}`).catch((error) => {
+        try {
+            await axios.patch(`/api/user/add-weapon?weaponName=${weaponName}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+            setWeaponAmount(weaponAmount + 1);
+        } catch (error) {
             console.log(error);
-        })
-        setWeaponAmount(weaponAmount + 1);
+        }
     }
 
     return user === null ? (
@@ -63,7 +71,7 @@ const ProfilePage = () => {
                                 py-12 rounded-lg bg-[#4a4e69]">
                     <div>
                         <ul className={"flex flex-col justify-center items-center"}>
-                            {user.weapons.map((weapon) => (
+                            {user.weapons?.map((weapon) => (
                                 <li key={weapon.id}>
                                     <div className={"flex flex-col justify-center items-center"}>
                                         <p>{weapon.name}</p>
@@ -86,7 +94,7 @@ const ProfilePage = () => {
                             <p>Add weapon to your favorites</p>
                             <select onChange={e => setWeaponName(e.target.value)}
                                     className="justify-center items-center">
-                                {weapons.map((weapon) => (
+                                {weapons?.map((weapon) => (
                                     <option key={weapon.id}>{weapon.name}</option>
                                 ))}
                             </select>
@@ -107,11 +115,19 @@ const ProfilePage = () => {
 export default ProfilePage;
 
 function fetchProfile(id) {
-    return fetch(`/api/user/users/${id}`).then((res) => res.json());
+    return fetch(`/api/user/users/${id}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    }).then((res) => res.json());
 }
 
 function fetchWeapons() {
-    return fetch("/api/weapons").then((res) => res.json());
+    return fetch("/api/weapons", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    }).then((res) => res.json());
 }
 
 const findTitleImageByName = (titles, userTitle) => {

@@ -70,13 +70,13 @@ public class UserService {
 
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        User user = (User) authentication.getPrincipal();
+        MyUser user = (MyUser) authentication.getPrincipal();
         List<String> roles = user.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .toList();
 
-        return new JwtResponse(jwt, user.getUsername(), roles);
+        return new JwtResponse(jwt, user.getUsername(), roles, user.getId());
     }
 
     @Transactional
