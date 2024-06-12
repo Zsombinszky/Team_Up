@@ -4,6 +4,7 @@ import com.codecool.teamup.model.guild.Guild;
 import com.codecool.teamup.model.weapon.Weapon;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,7 +33,7 @@ public class UserEntity {
 
     private String image;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Weapon> weapons;
 
     private String role;

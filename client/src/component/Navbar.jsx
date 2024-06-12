@@ -10,11 +10,11 @@ const Navbar = () => {
 
     const handleClick = () => setToggle(!toggle);
     const location = useLocation();
-    const token = localStorage.getItem('token');
+    const id = localStorage.getItem('userID');
 
 
     useEffect(() => {
-        if (token) {
+        if (id) {
             setIsLoggedIn(true);
         }
         if (localStorage.getItem("isAdmin")) {
@@ -51,6 +51,7 @@ const Navbar = () => {
                                 onClick={() => {
                                     localStorage.removeItem('token');
                                     localStorage.removeItem('isAdmin');
+                                    localStorage.removeItem('userID');
                                     setIsLoggedIn(false);
                                 }}
                                 className="flex justify-between items-center bg-transparent px-6 gap-2"
@@ -58,7 +59,7 @@ const Navbar = () => {
                                 <img src={lock} className="h-[25px]" alt="lock"/>
                                 Logout
                             </button>
-                            <Link to={`/profile/${token}`}>
+                            <Link to={`/profile/${id}`}>
                                 <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">Profile
                                 </button>
                             </Link>

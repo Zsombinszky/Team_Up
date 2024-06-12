@@ -8,7 +8,7 @@
         <version>3.2.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.zsombinszky</groupId>
+    <groupId>com.codecool</groupId>
     <artifactId>teamup-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>teamup-test</name>
