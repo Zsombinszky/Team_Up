@@ -50,8 +50,8 @@ public class WeaponController {
         throw new RuntimeException("Weapon with name " + name + " not found");
     }
 
-    @DeleteMapping("/delete")
-    public void deleteWeaponById(@RequestParam long id) {
+    @DeleteMapping("/delete/{id}")
+    public void deleteWeaponById(@PathVariable long id) {
         weaponService.deleteWeaponById(id);
     }
 }
