@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Table = ({ props, handleDelete }) => {
+const Table = ({props, handleDelete}) => {
     if (!props || props.length === 0) {
         return <div>No data available</div>;
     }
@@ -25,10 +25,10 @@ const Table = ({ props, handleDelete }) => {
                     {/* head */}
                     <thead>
                     <tr>
-                        <th>Delete</th>
-                        <th>#</th>
+                        <th className={"text-[1.5rem]"}>Delete</th>
+                        <th className={"text-[1.5rem]"}>#</th>
                         {headers.map((header, index) => (
-                            <th key={index}>{header}</th>
+                            <th className={"text-[1.5rem]"} key={index}>{header}</th>
                         ))}
                     </tr>
                     </thead>
@@ -36,7 +36,7 @@ const Table = ({ props, handleDelete }) => {
                     {props.map((item, rowIndex) => (
                         <tr key={rowIndex}>
                             <td>
-                                <button onClick={() => handleDelete(item.id)}>X</button>
+                                <button className={"text-red-500 font-bold text-[1.2rem] bg-gray-300 p-0.5"} onClick={() => handleDelete(item.id)}>X</button>
                             </td>
                             <th>{rowIndex + 1}</th>
                             {headers.map((header, cellIndex) => {
@@ -49,7 +49,7 @@ const Table = ({ props, handleDelete }) => {
                                     );
                                 }
                                 return (
-                                    <td key={cellIndex}>
+                                    <td className={"text-[1rem]"} key={cellIndex}>
                                         {isValidUrl(cellValue) ? (
                                             <a href={cellValue} target="_blank" rel="noopener noreferrer">
                                                 {cellValue}
