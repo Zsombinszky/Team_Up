@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import axios from "axios";
 
 const GuildDetailsPage = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const [guild, setGuild] = useState(null);
+    const token = localStorage.getItem("token");
+
+    const fetchGuildById = async () => {
+        try {
+            const response = await axios.get(`/api/guild/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                responseType: "json"
+            });
+            setGuild(response.data)
+            console.log(response.data);
+        } catch (error) {
+            console.error("Could not find guild.", error);
+        }
+    }
+
 
     useEffect(() => {
-        fetch(`/api/guild/${id}`)
-            .then(res => res.json())
-            .then(data => setGuild(data))
-            .catch(error => console.error('Error fetching guild:', error));
+        fetchGuildById()
     }, [id]);
 
     if (!guild) {
@@ -19,7 +34,7 @@ const GuildDetailsPage = () => {
     return (
         <div className="guild-details">
             <h1>{guild.guildName}</h1>
-            <img src={guild.guildBadge} alt="guild badge" />
+            <img src={guild.guildBadge} alt="guild badge"/>
             <p>{guild.missionStatement}</p>
             <h2>Chieftain</h2>
             <p>Username: {guild.chieftain.username}</p>

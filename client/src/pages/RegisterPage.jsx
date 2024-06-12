@@ -38,7 +38,7 @@ const RegisterPage = () => {
             });
             if (response.ok) {
                 console.log("Registration successful");
-                 navigate("/");
+                navigate("/");
             } else {
                 console.error("Registration failed");
             }
@@ -67,7 +67,9 @@ const RegisterPage = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 gap-5">
                                 <div className="mt-5">
-                                    <label htmlFor="userName" className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">User name</label>
+                                    <label htmlFor="userName"
+                                           className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">User
+                                        name</label>
                                     <input
                                         type="text"
                                         placeholder="name"
@@ -77,7 +79,8 @@ const RegisterPage = () => {
                                     />
                                 </div>
                                 <div className="mt-5">
-                                    <label htmlFor="password" className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Password</label>
+                                    <label htmlFor="password"
+                                           className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Password</label>
                                     <input
                                         type="password"
                                         placeholder="password"
@@ -87,7 +90,8 @@ const RegisterPage = () => {
                                     />
                                 </div>
                                 <div className="mt-5">
-                                    <label htmlFor="email" className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Email</label>
+                                    <label htmlFor="email"
+                                           className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Email</label>
                                     <input
                                         type="email"
                                         placeholder="email"
@@ -97,7 +101,8 @@ const RegisterPage = () => {
                                     />
                                 </div>
                                 <div className="mt-5">
-                                    <label htmlFor="birthDate" className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Birthdate</label>
+                                    <label htmlFor="birthDate"
+                                           className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Birthdate</label>
                                     <input
                                         type="date"
                                         value={birthDate}
@@ -106,7 +111,8 @@ const RegisterPage = () => {
                                     />
                                 </div>
                                 <div className="mt-5">
-                                    <label htmlFor="title" className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Title</label>
+                                    <label htmlFor="title"
+                                           className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Title</label>
                                     <select
                                         value={title}
                                         onChange={(e) => setTitle(e.target.value)}
@@ -120,7 +126,8 @@ const RegisterPage = () => {
                                     </select>
                                 </div>
                                 <div className="mt-5">
-                                    <label htmlFor="level" className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Level</label>
+                                    <label htmlFor="level"
+                                           className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Level</label>
                                     <input
                                         type="number"
                                         value={level}
@@ -131,7 +138,9 @@ const RegisterPage = () => {
                                     />
                                 </div>
                                 <div className="mt-5">
-                                    <label htmlFor="profilePicture" className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Profile Picture</label>
+                                    <label htmlFor="profilePicture"
+                                           className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Profile
+                                        Picture</label>
                                     <input
                                         type="text"
                                         placeholder="Profile picture URL"

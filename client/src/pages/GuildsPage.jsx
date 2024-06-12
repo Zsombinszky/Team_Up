@@ -15,7 +15,6 @@ const GuildsPage = () => {
         fetchGuilds().then(guilds => setGuilds(guilds));
     }, []);
 
-
     return (
         <div className={"w-full h-screen relative"}>
             <div>
