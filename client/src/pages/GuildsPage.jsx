@@ -3,9 +3,12 @@ import {Link} from "react-router-dom";
 
 const GuildsPage = () => {
     const [guilds, setGuilds] = useState([]);
+    const token = localStorage.getItem("token");
 
     function fetchGuilds() {
-        return fetch('/api/guild/all').then(res => res.json());
+        return fetch('/api/guild/all', {
+            headers: {Authorization: `Bearer ${token}`},
+        }).then(res => res.json());
     }
 
     useEffect(() => {

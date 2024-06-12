@@ -45,7 +45,7 @@ public class WebSecurityConfiguration {
                     registry.requestMatchers("/api/user/register", "/api/user/login",
                             "/api/feedback/all", "/api/dispatches").permitAll();
                     registry.requestMatchers("/api/weapons/add", "/api/weapons/delete").hasRole("ADMIN");
-                    registry.requestMatchers("/api/guild/delete/{id}").hasRole("GUILD_MASTER");
+                    registry.requestMatchers("/api/guild/delete/{id}").hasAnyRole("GUILD_MASTER", "ADMIN");
                     registry.anyRequest().authenticated();
                 });
         httpSecurity.authenticationProvider(authenticationProvider());
