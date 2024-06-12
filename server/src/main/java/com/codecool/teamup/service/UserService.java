@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -130,8 +131,12 @@ public class UserService {
         throw new RuntimeException("User not found");
     }
 
-    public List<UserEntity> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> getAllUsers() {
+        List<UserEntity> users = userRepository.findAll();
+        List<UserDTO> userDTOs = new ArrayList<>();
+        users.forEach(user -> userDTOs.add(new UserDTO(user.getId(), user.getUsername(), user.getEmail(), user.getBirthdate(), user.getLevel(),
+                user.getTitle(), user.getImage())));
+        return userDTOs;
     }
 
     @Transactional

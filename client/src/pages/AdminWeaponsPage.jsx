@@ -21,7 +21,7 @@ const AdminWeaponsPage = () => {
 
     useEffect(() => {
         fetchWeapons()
-    }, [weapons]);
+    }, []);
 
     const handleDelete = async (id) => {
         const token = localStorage.getItem("token")
@@ -31,6 +31,7 @@ const AdminWeaponsPage = () => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            fetchWeapons()
         } catch (error) {
             console.error("Error deleting data:", error)
         }

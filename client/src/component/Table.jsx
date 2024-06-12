@@ -25,16 +25,19 @@ const Table = ({ props, handleDelete }) => {
                     {/* head */}
                     <thead>
                     <tr>
+                        <th>Delete</th>
                         <th>#</th>
                         {headers.map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
-                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
                     {props.map((item, rowIndex) => (
                         <tr key={rowIndex}>
+                            <td>
+                                <button onClick={() => handleDelete(item.id)}>X</button>
+                            </td>
                             <th>{rowIndex + 1}</th>
                             {headers.map((header, cellIndex) => {
                                 const cellValue = item[header];
@@ -57,9 +60,6 @@ const Table = ({ props, handleDelete }) => {
                                     </td>
                                 );
                             })}
-                            <td>
-                                <button onClick={() => handleDelete(item.id)}>X</button>
-                            </td>
                         </tr>
                     ))}
                     </tbody>

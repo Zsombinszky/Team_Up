@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<UserEntity> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 

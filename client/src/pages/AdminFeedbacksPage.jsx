@@ -16,7 +16,7 @@ const AdminFeedbacksPage = () => {
 
     useEffect(() => {
         fetchFeedbacks()
-    }, [feedbacks]);
+    }, []);
 
     const handleDelete = async (id) => {
         const token = localStorage.getItem("token")
@@ -26,6 +26,7 @@ const AdminFeedbacksPage = () => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            fetchFeedbacks()
         } catch (error) {
             console.error("Error deleting data:", error)
         }

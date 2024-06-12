@@ -21,7 +21,7 @@ const AdminGuildsPage = () => {
 
     useEffect(() => {
         fetchGuilds()
-    }, [guilds]);
+    }, []);
 
     const handleDelete = async (id) => {
         try {
@@ -30,6 +30,7 @@ const AdminGuildsPage = () => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            fetchGuilds()
         } catch (error) {
             console.error("Error deleting data:", error)
         }
