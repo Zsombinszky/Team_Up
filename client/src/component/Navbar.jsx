@@ -1,26 +1,38 @@
-import React, {useEffect, useState} from 'react';
-import {Link, useLocation} from "react-router-dom";
-import {logo, lock, hamburgerMenu, close} from '../assets';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from "react-router-dom";
+import { logo, lock, hamburgerMenu, close } from '../assets';
 
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
 
-
     const handleClick = () => setToggle(!toggle);
     const location = useLocation();
     const id = localStorage.getItem('userID');
 
-
     useEffect(() => {
         if (id) {
             setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
         }
+
         if (localStorage.getItem("isAdmin")) {
             setIsAdmin(true);
+        } else {
+            setIsAdmin(false);
         }
     }, [location]);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('userID');
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+        window.location.reload();  // Refresh the page
+    };
 
     return (
         <div className="w-full h-[80px] bg-white border-b">
@@ -38,7 +50,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="hidden md:flex">
-                    {isAdmin && (
+                    {isAdmin && isLoggedIn && (
                         <Link to={"/admin"}>
                             <button className="px-8 py-3 rounded-md bg-[#20B486] text-white font-bold">
                                 ADMIN TOOLS
@@ -48,12 +60,7 @@ const Navbar = () => {
                     {isLoggedIn ? (
                         <>
                             <button
-                                onClick={() => {
-                                    localStorage.removeItem('token');
-                                    localStorage.removeItem('isAdmin');
-                                    localStorage.removeItem('userID');
-                                    setIsLoggedIn(false);
-                                }}
+                                onClick={handleLogout}
                                 className="flex justify-between items-center bg-transparent px-6 gap-2"
                             >
                                 <img src={lock} className="h-[25px]" alt="lock"/>
